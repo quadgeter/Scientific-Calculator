@@ -10,16 +10,16 @@ public class Evaluator {
 		}
 	}
 
-	public int InfixToPostFix(String infix) {
+	public double InfixToPostFix(String infix) {
 		Stack<Character> operator = new Stack<Character>();
-		Stack<Integer> operand = new Stack<Integer>();
+		Stack<Double> operand = new Stack<Double>();
  		String postfix = "";
 		for (int i=0; i < infix.length(); i++) {
 			char c = infix.charAt(i);
 			if (Character.isDigit(c)) {
 				String value = "";
 				while (i < infix.length()) {
-					if (Character.isDigit(infix.charAt(i))) {
+					if (Character.isDigit(infix.charAt(i)) || infix.charAt(i) == '.') {
 						value += infix.charAt(i++);
 					}
 					else {
@@ -28,7 +28,7 @@ public class Evaluator {
 					
 				}
 				i--;
-				operand.push(Integer.parseInt(value));
+				operand.push(Double.parseDouble(value));
 			} 
 			else if (c == '(') {
 				operator.push(c);
@@ -42,9 +42,9 @@ public class Evaluator {
 				} 
 				else if (getPriority(operator.peek()) >= getPriority(c)) {
 					char op = operator.pop();
-					int num2 = operand.pop();
-					int num1 = operand.pop();
-					int value = evaluate(num1, num2, op);
+					double num2 = operand.pop();
+					double num1 = operand.pop();
+					double value = evaluate(num1, num2, op);
 					operand.push(value);
 					operator.push(c);
 				} 
@@ -56,9 +56,9 @@ public class Evaluator {
 			else if (c ==')') {
 				while (operator.peek() != '(') {
 					char op = operator.pop();
-					int num2 = operand.pop();
-					int num1 = operand.pop();
-					int value = evaluate(num1, num2, op);
+					double num2 = operand.pop();
+					double num1 = operand.pop();
+					double value = evaluate(num1, num2, op);
 					operand.push(value);
 				}
 				operator.pop();
@@ -67,17 +67,17 @@ public class Evaluator {
 			
 		while (!operator.isEmpty()) {
 			char op = operator.pop();
-			int num2 = operand.pop();
-			int num1 = operand.pop();
-			int value = evaluate(num1, num2, op);
+			double num2 = operand.pop();
+			double num1 = operand.pop();
+			double value = evaluate(num1, num2, op);
 			operand.push(value);
 		}
 		
 		return operand.pop();
 	}
 	
-	public int evaluate(int num1, int num2, char op) {
-		int result = 0;
+	public double evaluate(double num1, double num2, char op) {
+		double result = 0;
 		switch(op) {
 		case '+':
 			result =  num1 + num2;

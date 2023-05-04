@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.InputMismatchException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -15,7 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
-public class CalculatorGUI extends JFrame implements ActionListener, FocusListener{
+public class CalculatorGUI extends JFrame implements ActionListener, FocusListener, KeyListener{
 	private JPanel basicPanel, advanced;
 	private JTextArea opField, ansField;
 	private JButton one, two, three, four, five, six, seven, eight, nine, zero, dot, plusMinus, percent, mod, clear, plus, minus;
@@ -50,6 +52,8 @@ public class CalculatorGUI extends JFrame implements ActionListener, FocusListen
 			gbc.gridwidth = 4;
 			basicPanel.add(opField, gbc);
 			opField.addFocusListener(this);
+			opField.addKeyListener(this);
+
 			
 			ansField = new JTextArea();
 			ansField.setBorder(border);
@@ -62,8 +66,8 @@ public class CalculatorGUI extends JFrame implements ActionListener, FocusListen
 			gbc.gridwidth = 1;
 			
 			one = new JButton("1");
-			one.setBackground(Color.BLACK);
-			one.setForeground(Color.orange);
+			one.setBackground(Color.darkGray);
+			one.setForeground(Color.white);
 			gbc.gridx = 0;
 			gbc.gridy = 3;
 			basicPanel.add(one, gbc);
@@ -72,93 +76,93 @@ public class CalculatorGUI extends JFrame implements ActionListener, FocusListen
 			two = new JButton("2");
 			gbc.gridx = 1;
 			gbc.gridy = 3;
-			two.setBackground(Color.black);
-			two.setForeground(Color.orange);
+			two.setBackground(Color.darkGray);
+			two.setForeground(Color.white);
 			basicPanel.add(two, gbc);
 			two.addActionListener(this);
 			
 			three = new JButton("3");
-			three.setBackground(Color.black);
-			three.setForeground(Color.orange);
+			three.setBackground(Color.darkGray);
+			three.setForeground(Color.white);
 			gbc.gridx = 2;
 			gbc.gridy = 3;
 			basicPanel.add(three, gbc);
 			three.addActionListener(this);
 			
 			four = new JButton("4");
-			four.setBackground(Color.black);
-			four.setForeground(Color.orange);
+			four.setBackground(Color.darkGray);
+			four.setForeground(Color.white);
 			gbc.gridx = 0;
 			gbc.gridy = 4;
 			basicPanel.add(four, gbc);
 			four.addActionListener(this);
 			
 			five = new JButton("5");
-			five.setBackground(Color.black);
-			five.setForeground(Color.orange);
+			five.setBackground(Color.darkGray);
+			five.setForeground(Color.white);
 			gbc.gridx = 1;
 			gbc.gridy = 4;
 			basicPanel.add(five, gbc);
 			five.addActionListener(this);
 			
 			six = new JButton("6");
-			six.setBackground(Color.black);
-			six.setForeground(Color.orange);
+			six.setBackground(Color.darkGray);
+			six.setForeground(Color.white);
 			gbc.gridx = 2;
 			gbc.gridy = 4;
 			basicPanel.add(six, gbc);
 			six.addActionListener(this);
 			
 			seven = new JButton("7");
-			seven.setBackground(Color.black);
-			seven.setForeground(Color.orange);
+			seven.setBackground(Color.darkGray);
+			seven.setForeground(Color.white);
 			gbc.gridx = 0;
 			gbc.gridy = 5;
 			basicPanel.add(seven, gbc);
 			seven.addActionListener(this);
 			
 			eight = new JButton("8");
-			eight.setBackground(Color.black);
-			eight.setForeground(Color.orange);
+			eight.setBackground(Color.darkGray);
+			eight.setForeground(Color.white);
 			gbc.gridx = 1;
 			gbc.gridy = 5;
 			basicPanel.add(eight, gbc);
 			eight.addActionListener(this);
 			
 			nine = new JButton("9");
-			nine.setBackground(Color.black);
-			nine.setForeground(Color.orange);
+			nine.setBackground(Color.darkGray);
+			nine.setForeground(Color.white);
 			gbc.gridx = 2;
 			gbc.gridy = 5;
 			basicPanel.add(nine, gbc);
 			nine.addActionListener(this);
 			
 			zero = new JButton("0");
-			zero.setBackground(Color.black);
-			zero.setForeground(Color.orange);
+			zero.setBackground(Color.darkGray);
+			zero.setForeground(Color.white);
 			gbc.gridx = 1;
 			gbc.gridy = 6;
 			basicPanel.add(zero, gbc);
 			zero.addActionListener(this);
 			
 			dot = new JButton(".");
-			dot.setBackground(Color.black);
-			dot.setForeground(Color.orange);
+			dot.setBackground(Color.darkGray);
+			dot.setForeground(Color.white);
 			gbc.gridx = 0;
 			gbc.gridy = 6;
 			basicPanel.add(dot, gbc);
 			dot.addActionListener(this);
 			
 			plusMinus = new JButton("±");
-			plusMinus.setBackground(Color.black);
-			plusMinus.setForeground(Color.orange);
+			plusMinus.setBackground(Color.darkGray);
+			plusMinus.setForeground(Color.white);
 			gbc.gridy = 6;
 			gbc.gridx = 2;
 			basicPanel.add(plusMinus, gbc);
 			plusMinus.addActionListener(this);
 			
 			clear = new JButton("C");
-			clear.setBackground(Color.orange);
+			clear.setBackground(Color.red);
 			clear.setForeground(Color.black);
 			gbc.gridx = 3;
 			gbc.gridy = 3;
@@ -166,16 +170,16 @@ public class CalculatorGUI extends JFrame implements ActionListener, FocusListen
 			clear.addActionListener(this);
 			
 			plus = new JButton("+");
-			plus.setBackground(Color.black);
-			plus.setForeground(Color.orange);
+			plus.setBackground(Color.darkGray);
+			plus.setForeground(Color.white);
 			gbc.gridx = 3;
 			gbc.gridy = 4;
 			basicPanel.add(plus, gbc);
 			plus.addActionListener(this);
 			
 			minus = new JButton("-");
-			minus.setBackground(Color.black);
-			minus.setForeground(Color.orange);
+			minus.setBackground(Color.darkGray);
+			minus.setForeground(Color.white);
 			gbc.gridx = 3;
 			gbc.gridy = 5;
 			gbc.gridwidth = 2;
@@ -183,8 +187,8 @@ public class CalculatorGUI extends JFrame implements ActionListener, FocusListen
 			minus.addActionListener(this);
 			
 			multiply = new JButton("x");
-			multiply.setBackground(Color.black);
-			multiply.setForeground(Color.orange);
+			multiply.setBackground(Color.darkGray);
+			multiply.setForeground(Color.white);
 			gbc.gridx = 3;
 			gbc.gridy = 6;
 			gbc.gridwidth = 2;
@@ -194,48 +198,48 @@ public class CalculatorGUI extends JFrame implements ActionListener, FocusListen
 			gbc.gridwidth = 1;
 		
 			percent = new JButton("%");
-			percent.setBackground(Color.black);
-			percent.setForeground(Color.orange);
+			percent.setBackground(Color.darkGray);
+			percent.setForeground(Color.white);
 			gbc.gridx = 0;
 			gbc.gridy = 7;
 			basicPanel.add(percent, gbc);
 			percent.addActionListener(this);
 			
 			squareRoot = new JButton("√");
-			squareRoot.setBackground(Color.black);
-			squareRoot.setForeground(Color.orange);
+			squareRoot.setBackground(Color.darkGray);
+			squareRoot.setForeground(Color.white);
 			gbc.gridx = 1;
 			gbc.gridy = 7;
 			basicPanel.add(squareRoot, gbc);
 			squareRoot.addActionListener(this);
 			
 			square = new JButton("x²");
-			square.setBackground(Color.black);
-			square.setForeground(Color.orange);
+			square.setBackground(Color.darkGray);
+			square.setForeground(Color.white);
 			gbc.gridx = 2;
 			gbc.gridy = 7;
 			basicPanel.add(square, gbc);
 			square.addActionListener(this);
 			
 			divide = new JButton("/");
-			divide.setBackground(Color.black);
-			divide.setForeground(Color.orange);
+			divide.setBackground(Color.darkGray);
+			divide.setForeground(Color.white);
 			gbc.gridx = 3;
 			gbc.gridy = 7;
 			basicPanel.add(divide, gbc);
 			divide.addActionListener(this);
 			
 			mod = new JButton("mod");
-			mod.setBackground(Color.black);
-			mod.setForeground(Color.orange);
+			mod.setBackground(Color.darkGray);
+			mod.setForeground(Color.white);
 			gbc.gridx = 0;
 			gbc.gridy = 8;
 			basicPanel.add(mod, gbc);
 			mod.addActionListener(this);
 			
 			cube = new JButton("x³");
-			cube.setBackground(Color.black);
-			cube.setForeground(Color.orange);
+			cube.setBackground(Color.darkGray);
+			cube.setForeground(Color.white);
 			gbc.gridx = 1;
 			gbc.gridy = 8;
 			basicPanel.add(cube, gbc);
@@ -263,112 +267,112 @@ public class CalculatorGUI extends JFrame implements ActionListener, FocusListen
 			add(advanced);
 			
 			sin = new JButton("sin");
-			sin.setBackground(Color.black);
-			sin.setForeground(Color.orange);
+			sin.setBackground(Color.darkGray);
+			sin.setForeground(Color.white);
 			gbc.gridx = 0;
 			gbc.gridy = 1;
 			advanced.add(sin, gbc);
 			sin.addActionListener(this);
 			
 			tan = new JButton("tan");
-			tan.setBackground(Color.black);
-			tan.setForeground(Color.orange);
+			tan.setBackground(Color.darkGray);
+			tan.setForeground(Color.white);
 			gbc.gridx = 1;
 			gbc.gridy = 1;
 			advanced.add(tan, gbc);
 			tan.addActionListener(this);
 			
 			cos = new JButton("cos");
-			cos.setBackground(Color.black);
-			cos.setForeground(Color.orange);
+			cos.setBackground(Color.darkGray);
+			cos.setForeground(Color.white);
 			gbc.gridx = 2;
 			gbc.gridy = 1;
 			advanced.add(cos, gbc);
 			cos.addActionListener(this);
 			
 			log = new JButton("log");
-			log.setBackground(Color.black);
-			log.setForeground(Color.orange);
+			log.setBackground(Color.darkGray);
+			log.setForeground(Color.white);
 			gbc.gridx = 3;
 			gbc.gridy = 1;
 			advanced.add(log, gbc);
 			log.addActionListener(this);
 			
 			ln = new JButton("ln");
-			ln.setBackground(Color.black);
-			ln.setForeground(Color.orange);
+			ln.setBackground(Color.darkGray);
+			ln.setForeground(Color.white);
 			gbc.gridx = 4;
 			gbc.gridy = 1;
 			advanced.add(ln, gbc);
 			ln.addActionListener(this);
 			
 			asin = new JButton("asin");
-			asin.setBackground(Color.black);
-			asin.setForeground(Color.orange);
+			asin.setBackground(Color.darkGray);
+			asin.setForeground(Color.white);
 			gbc.gridx = 0;
 			gbc.gridy = 2;
 			advanced.add(asin, gbc);
 			asin.addActionListener(this);
 			
 			atan = new JButton("atan");
-			atan.setBackground(Color.black);
-			atan.setForeground(Color.orange);
+			atan.setBackground(Color.darkGray);
+			atan.setForeground(Color.white);
 			gbc.gridx = 1;
 			gbc.gridy = 2;
 			advanced.add(atan, gbc);
 			atan.addActionListener(this);
 			
 			acos = new JButton("acos");
-			acos.setBackground(Color.black);
-			acos.setForeground(Color.orange);
+			acos.setBackground(Color.darkGray);
+			acos.setForeground(Color.white);
 			gbc.gridx = 2;
 			gbc.gridy = 2;
 			advanced.add(acos, gbc);
 			acos.addActionListener(this);
 			
 			tenRoot = new JButton("10^n");
-			tenRoot.setBackground(Color.black);
-			tenRoot.setForeground(Color.orange);
+			tenRoot.setBackground(Color.darkGray);
+			tenRoot.setForeground(Color.white);
 			gbc.gridx = 3;
 			gbc.gridy = 2;
 			advanced.add(tenRoot, gbc);
 			tenRoot.addActionListener(this);
 			
 			oneOverN = new JButton("1/n");
-			oneOverN.setBackground(Color.black);
-			oneOverN.setForeground(Color.orange);
+			oneOverN.setBackground(Color.darkGray);
+			oneOverN.setForeground(Color.white);
 			gbc.gridx = 4;
 			gbc.gridy = 2;
 			advanced.add(oneOverN, gbc);
 			oneOverN.addActionListener(this);
 			
 			sinh = new JButton("sinh");
-			sinh.setBackground(Color.black);
-			sinh.setForeground(Color.orange);
+			sinh.setBackground(Color.darkGray);
+			sinh.setForeground(Color.white);
 			gbc.gridx = 0;
 			gbc.gridy = 3;
 			advanced.add(sinh, gbc);
 			sinh.addActionListener(this);
 			
 			tanh = new JButton("tanh");
-			tanh.setBackground(Color.black);
-			tanh.setForeground(Color.orange);
+			tanh.setBackground(Color.darkGray);
+			tanh.setForeground(Color.white);
 			gbc.gridx = 1;
 			gbc.gridy = 3;
 			advanced.add(tanh, gbc);
 			tanh.addActionListener(this);
 			
 			cosh = new JButton("cosh");
-			cosh.setBackground(Color.black);
-			cosh.setForeground(Color.orange);
+			cosh.setBackground(Color.darkGray);
+			cosh.setForeground(Color.white);
 			gbc.gridx = 2;
 			gbc.gridy = 3;
 			advanced.add(cosh, gbc);
 			cosh.addActionListener(this);
 			
 			exit = new JButton("EXIT");
-			exit.setBackground(Color.black);
-			exit.setForeground(Color.orange);
+			exit.setBackground(Color.darkGray);
+			exit.setForeground(Color.white);
 			gbc.gridx = 3;
 			gbc.gridy = 3;
 			gbc.gridwidth = 2;
@@ -384,52 +388,62 @@ public class CalculatorGUI extends JFrame implements ActionListener, FocusListen
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String buttonText = ((JButton)e.getSource()).getText();
-			System.out.println("Clicked " + buttonText);
 			
 			switch (buttonText) {
 				case "1":
 					opField.append("1");
 					ansField.setText("");
+					opField.requestFocus();
 					break;
 				case "2":
 					opField.append("2");
 					ansField.setText("");
+					opField.requestFocus();
 					break;
 				case "3":
 					opField.append("3");
 					ansField.setText("");
+					opField.requestFocus();
 					break;
 				case "4":
 					opField.append("4");
 					ansField.setText("");
+					opField.requestFocus();
 					break;
 				case "5":
 					opField.append("5");
 					ansField.setText("");
+					opField.requestFocus();
 					break;
 				case "6":
 					opField.append("6");
 					ansField.setText("");
+					opField.requestFocus();
 					break;
 				case "7":
 					opField.append("7");
 					ansField.setText("");
+					opField.requestFocus();
 					break;
 				case "8":
 					opField.append("8");
 					ansField.setText("");
+					opField.requestFocus();
 					break;
 				case "9":
 					opField.append("9");
 					ansField.setText("");
+					opField.requestFocus();
 					break;
 				case "0":
 					opField.append("0");
 					ansField.setText("");
+					opField.requestFocus();
 					break;
 				case ".":
 					opField.append(".");
 					ansField.setText("");
+					opField.requestFocus();
 					break;
 				case "C":
 					calc = new Evaluator();
@@ -458,12 +472,23 @@ public class CalculatorGUI extends JFrame implements ActionListener, FocusListen
 							ansField.setText("Error. Input numbers only");
 						}
 						catch (Exception except) {
-							ansField.setText("Error");
+							ansField.setText("Syntax error");
 						}
 					}
 					else {
-						String input = opField.getText();
-						ansField.setText(Integer.toString(calc.InfixToPostFix(input)));
+						try {
+							String input = opField.getText();
+							ansField.setText(Double.toString(calc.InfixToPostFix(input)));
+						}
+						catch (ArithmeticException except) {
+							ansField.setText("Divide by zero error");
+						}
+						catch (Exception except) {
+							ansField.setText("Syntax error");
+						}
+						finally {
+							opField.setText("");
+						}
 					}
 					opField.setText("");
 					break;
@@ -491,7 +516,7 @@ public class CalculatorGUI extends JFrame implements ActionListener, FocusListen
 						ansField.setText("Error. Input only numbers");
 					}
 					catch (Exception except) {
-						ansField.setText("");
+						ansField.setText("Error");
 					}
 					finally {
 						opField.setText("");
@@ -749,13 +774,43 @@ public class CalculatorGUI extends JFrame implements ActionListener, FocusListen
 		@Override
 		public void focusGained(FocusEvent e) {
 			ansField.setText("");
-			System.out.println("Focus gained");
 		}
 
 		@Override
 		public void focusLost(FocusEvent e) {
-			System.out.println("Focus lost");
-			
+			// empty method
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// empty method
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+				try {
+					String input = opField.getText();
+					ansField.setText(Double.toString(calc.InfixToPostFix(input)));
+				}
+				catch (InputMismatchException except) {
+					ansField.setText("Error. Input only numbers");
+				}
+				catch (ArithmeticException except) {
+					ansField.setText("Divide by zero error");
+				}
+				catch (Exception except) {
+					ansField.setText("Syntax error");
+				}
+				finally {
+					opField.setText("");
+				}
+			}
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			// empty method
 		}
 
 }
